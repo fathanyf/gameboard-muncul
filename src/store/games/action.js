@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getDocs, collection, getDoc } from 'firebase/firestore'
+import { getDocs, collection, getDoc, serverTimestamp } from 'firebase/firestore'
 import { db } from "../../config/firebase";
-import { addDoc, doc, query, updateDoc, where } from "firebase/firestore";
+import { addDoc, doc, query, updateDoc, where, orderBy } from "firebase/firestore";
+import { gamesData, gamesBoard } from "./index";
 
 export const get_games = () => {
     return (dispatch) => {
@@ -31,7 +32,7 @@ export const get_game_board = () => {
                 Snapshot.docs.forEach((doc) =>{
                     result.push({ ...doc.data(), id: doc.id })
                 })
-                console.log("game board");
+                console.log(result);
                 dispatch(gamesBoard(result))
             })
             .catch((error) =>{
@@ -40,22 +41,28 @@ export const get_game_board = () => {
     }
 }
 
-export const gameSlice = createSlice({
-    name: 'games',
-    initialState: {
-        games: [],
-    },
-    reducers: {
-        gamesData(state, action) {
-            state.games = action.payload
-            state.loadingGames = false
-        },
-        gamesBoard(state,action){
-            state.gamesBoard = action.payload
-            state.addLoadingGameStats = false
-        },
-    },
-})
-
-export const { gamesData } = gameSlice.actions
-export default gameSlice.reducer
+export const add_game = (data) => {
+    return(dispatch => {
+        const gameRef = collection(db, 'gamestats')
+        getDocs(gameRef)
+            .then(() => {
+                let newGameStat = {
+                    playerId: data.playerId,
+                    point: data.point,
+                    playCount: data.playCounter,
+                    userWin: data.userWin,
+                    userLoss: data.userLoss,
+                    userDraw: data.userDraw,
+                    name:data.name,
+                    avatar:data.avatar,
+                    createdAt: serverTimestamp()
+                }
+                console.log(newGameStat);
+                addDoc(gameRef, newGameStat);
+                dispatch(addGameData(newGameStat))
+            })
+            .catch((error) =>{
+                console.log(error);
+            })
+    })
+}

@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import userReducer from "./user/action"
-import gameReducer from './games/action'
+import gameReducer from './games/'
 import pointReducer from './point/action'
 
 export const store = configureStore({
