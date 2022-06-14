@@ -12,29 +12,32 @@ import LeaderBoard from '../../components/player-components/LeaderBoard'
 const Account = () => {
     const user = useSelector(selectUser);
     const router = useRouter()
-    let { id } = router.query
     
     const leaderBoard = useSelector((state) => state.player.leaderBoard)
-    const profileData = useSelector((state) => state.player.profileData)
-    const data = useSelector((state) => state.game.gamesBoard)
+    const playerData = useSelector((state) => state.player.profileData)
+    const data = useSelector((state) => state.games.gamesBoard)
 
-    console.log("user", user);
+    console.log('data', data);
+    console.log('player', playerData);
+    console.log('leader', leaderBoard);
+    console.log('user', user);
 
     const dispatch = useDispatch()
 
     useEffect(() =>{
+
         dispatch(get_player())
     }, [dispatch])
 
     useEffect(() => {
-        if (data.game?.uid)
-        dispatch(get_game_board(data.game?.uid))     
-    }, [data.game?.uid, dispatch])
+
+        dispatch(get_game_board())     
+    }, [dispatch])
 
     useEffect(() => {
-        if (leaderBoard.player?.uid)
-        dispatch(get_leader_board(leaderBoard.player?.uid))
-    }, [leaderBoard.player?.uid, dispatch])
+        // if ()
+        dispatch(get_leader_board())
+    }, [dispatch])
 
     return (
         <>

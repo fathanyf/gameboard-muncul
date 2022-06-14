@@ -25,16 +25,16 @@ export const get_leader_board = (id) => {
 
 export const get_player = () => {
     return(dispatch) => {
-        const dbRef = query(collection(db, 'gamestats'), limit(3))
+        const dbRef = query(collection(db, 'users'), limit(3))
         getDocs(dbRef)
             .then((snapshot) => {
                 console.log("2b. berhasil dapat data :", snapshot.docs);
-                let gamestats = []
+                let users = []
                 snapshot.docs.forEach((doc) => {
-                    gamestats.push({ ...doc.data(), id: doc.id})
+                    users.push({ ...doc.data(), id: doc.id})
                 })
-                console.log(gamestats);
-                dispatch(playerData(gamestats))
+                console.log(users);
+                dispatch(playerData(users))
             })
             .catch((error) => {
                 console.log(error);

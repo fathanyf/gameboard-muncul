@@ -9,7 +9,6 @@ const LeaderBoard = () => {
     const user = useSelector(selectUser)
 
     const leaderBoard= useSelector((state) => state.player.leaderBoard)
-    // const loadingGamesStats = useSelector((state) => state.player.loadingGamesStats)
     const dispatch = useDispatch()
 
     console.log("user", user);

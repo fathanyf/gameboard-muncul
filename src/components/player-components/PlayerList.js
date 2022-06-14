@@ -9,14 +9,13 @@ const PlayerList = () => {
     const user = useSelector(selectUser)
 
     const playerData= useSelector((state) => state.player.playerData)
-    const loadingProfile = useSelector((state) => state.player.loadingPlayerData)
     const dispatch = useDispatch(playerData)
 
     console.log("user", user);
 
     useEffect(() => {
-        dispatch(get_player(loadingProfile.player?.uid))
-    }, [loadingProfile.player?.uid, dispatch])
+        dispatch(get_player())
+    }, [dispatch])
 
     return (
                             <div className="card card-danger">

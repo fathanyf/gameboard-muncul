@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 const GameList = () => {
 
-    const data = useSelector((state) => state.game.games)
+    const data = useSelector((state) => state.games.games)
     const dispatch = useDispatch()
 
     console.log(data)
