@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { get_game_board } from "../../store/games/action";
 import moment from "moment";
 import { selectUser } from "../../store/user/action";
+// import { getUser } from "../../store/user/action";
 
 const GameBoard = () => {
 
@@ -12,12 +13,15 @@ const GameBoard = () => {
     const loadingGamesStats = useSelector((state) => state.game.loadingGamesStats)
     const errorGamesStats = useSelector((state) => state.game.errorGamesStats)
     const dispatch = useDispatch()
+    // const auth = useSelector((state) => state.user)
 
-    // console.log(data);
+
+
+    console.log("user", user);
 
     useEffect(() => {
-        dispatch(get_game_board(loadingGamesStats.game?.uid))
-    }, [loadingGamesStats.game?.uid, dispatch])
+        dispatch(get_game_board())
+    }, [dispatch])
 
     return (
         <div className="card">

@@ -18,7 +18,7 @@ const Account = () => {
     const profileData = useSelector((state) => state.player.profileData)
     const data = useSelector((state) => state.game.gamesBoard)
 
-    console.log('data', data);
+    console.log("user", user);
 
     const dispatch = useDispatch()
 

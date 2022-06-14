@@ -12,7 +12,7 @@ const PlayerList = () => {
     const loadingProfile = useSelector((state) => state.player.loadingPlayerData)
     const dispatch = useDispatch(playerData)
 
-    // console.log(result);
+    console.log("user", user);
 
     useEffect(() => {
         dispatch(get_player(loadingProfile.player?.uid))
@@ -29,7 +29,7 @@ const PlayerList = () => {
                                                     <div className="image">
                                                         {
                                                             !e.avatar ? (
-                                                                <img src="/blank-avatar.svg" className="img-circle elevation-2" alt="User Image" />
+                                                                <avatar src="/blank-avatar.svg" className="img-circle elevation-2" alt="User Image" />
                                                             ) : (
                                                                 <img src={e.avatar} className="img-circle elevation-2" alt="User Image" />
                                                             )

@@ -12,11 +12,11 @@ const LeaderBoard = () => {
     // const loadingGamesStats = useSelector((state) => state.player.loadingGamesStats)
     const dispatch = useDispatch()
 
-    // console.log(data);
+    console.log("user", user);
 
     useEffect(() => {
-        dispatch(get_leader_board(leaderBoard.player?.uid))
-    }, [leaderBoard.player?.uid, dispatch])
+        dispatch(get_leader_board())
+    }, [, dispatch])
 
     return (
 
@@ -30,7 +30,7 @@ const LeaderBoard = () => {
                                                 <ul className="products-list product-list-in-card pl-2 pr-2" key={index}>
                                                     <li className="item">
                                                         {
-                                                            (e.totalpoint === 0) ? (
+                                                            (e.point === 0) ? (
                                                                 <>
                                                                     {/* <div className="product-img">
                                                                         <img src='/blank-avatar.svg' alt="Product Image" className="img-size-50" />
@@ -51,7 +51,7 @@ const LeaderBoard = () => {
                                                                     </div>
                                                                     <div className="product-info">
                                                                         <a className="product-title">{e.name}
-                                                                            <span className="badge badge-warning float-right">{e.totalpoint}</span></a>
+                                                                            <span className="badge badge-warning float-right">{e.point}</span></a>
                                                                         <span className="product-description">
                                                                             <small><span><b>Update at : </b></span>{moment(e.updatedAt === undefined ? " " : e.updatedAt.toDate()).calendar()}</small>
                                                                         </span>
