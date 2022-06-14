@@ -7,6 +7,7 @@ export const gameSlice = createSlice({
         gamesBoard:[],
         loadingGames:true,
         loadingGamesStats:true,
+        errorGamesStats:true
     },
     reducers: {
         gamesData(state, action) {
@@ -16,6 +17,7 @@ export const gameSlice = createSlice({
         gamesBoard(state,action){
             state.gamesBoard = action.payload
             state.loadingGamesStats = false
+            state.errorGamesStats = false
         },
         addGameData(state, action){
             state.addGameData = action.payload
