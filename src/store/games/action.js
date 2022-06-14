@@ -5,8 +5,11 @@ import { gamesData, gamesBoard } from "./index";
 
 export const get_game_board = () => {
     return(dispatch) => {
-        const q = query(collection(db, 'gamestats'), orderBy("point", "desc"))
+        const q  = query(collection(db, 'gamestats'), orderBy("point", "desc"))
         getDocs(q)
+        // const updateTimestamp = await updateDoc(docRef, {
+        //     timestamp: serverTimestamp()
+        // });
             .then((Snapshot) => {
                 console.log("2. berhasil dapat data :", Snapshot.docs);
                 let gamestats = []
