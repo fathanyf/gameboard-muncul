@@ -6,7 +6,7 @@ import { leaderBoard, playerData } from './index';
 
 export const get_leader_board = (id) => {
     return(dispatch) => {
-        const q = query(collection(db, 'gamepoint'), orderBy("point", "desc"))
+        const q = query(collection(db, 'gamepoint'), orderBy("totalPoint", "desc"))
         getDocs(q)
             .then((Snapshot) => {
                 console.log("2a. berhasil dapat data :", Snapshot.docs);
