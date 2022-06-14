@@ -15,7 +15,6 @@ const Account = () => {
     let { id } = router.query
     
     const leaderBoard = useSelector((state) => state.player.leaderBoard)
-    const gamesBoard = useSelector((state) => state.player.gamesBoard)
     const profileData = useSelector((state) => state.player.profileData)
     const data = useSelector((state) => state.game.gamesBoard)
 
@@ -28,13 +27,14 @@ const Account = () => {
     }, [dispatch])
 
     useEffect(() => {
-        console.log();
-        dispatch(get_game_board())
-    }, [dispatch])
+        if (data.game?.uid)
+        dispatch(get_game_board(data.game?.uid))     
+    }, [data.game?.uid, dispatch])
 
     useEffect(() => {
-        dispatch(get_leader_board())
-    }, [dispatch])
+        if (leaderBoard.player?.uid)
+        dispatch(get_leader_board(leaderBoard.player?.uid))
+    }, [leaderBoard.player?.uid, dispatch])
 
     return (
         <>

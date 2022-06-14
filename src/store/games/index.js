@@ -19,10 +19,6 @@ export const gameSlice = createSlice({
             state.loadingGamesStats = false
             state.errorGamesStats = false
         },
-        addGameData(state, action){
-            state.addGameData = action.payload
-            state.loadingGames = false
-        }
     },
 })
 
